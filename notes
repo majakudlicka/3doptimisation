@@ -6,6 +6,7 @@ https://www.stackassist.com/your-benefits/ (3d packing for rectangular objects)
 Npm packages
 https://www.npmjs.com/package/3d-bin-packing
 https://www.npmjs.com/package/binpackingjs (demo for 2D: https://codesandbox.io/s/XVJnv7Yg)
+https://www.npmjs.com/package/simulated-annealing
 
 Paper on packing objects with cavities and holes: https://pdfs.semanticscholar.org/7eb7/56da1acaf725c7a2d21c58383de3710bc553.pdf
 
@@ -23,6 +24,7 @@ https://github.com/skjolber/3d-bin-container-packing
 Papers that suggests partitioning product for better results:
 http://www.miaojunyao.com/project/packing/packing.pdf
 http://hpcg.purdue.edu/papers/Vanek14CGF.pdf (packMerger)
+
 
 
 
