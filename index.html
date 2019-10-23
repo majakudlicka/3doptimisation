@@ -3,15 +3,31 @@
 <head>
 	<meta charset="utf-8">
 	<title></title>
-	<script src="./index.js"></script>
+	<script src="./annealing.js"></script>
 </head>
 <body>
-		<canvas id="myCanvas" height=750 width=750 style="border:1px solid #000000;"></canvas>
-		<br>
-		<button onclick="start()"> CLICK ME </button>
-		<br>
-		<label>Hide path</label>
-		<br>
-		<input type="checkbox" onclick="preservePath = !preservePath">
+<div style="display: flex; flex-direction: row; justify-content: space-around;">
+	<div>
+<h3>SIMULATED ANNEALING ALGO EXAMPLE</h3>
+<canvas id="annealingCanvas" height=750 width=750 style="border:1px solid #000000;"></canvas>
+<br>
+<button style="height: 50px; width: 100px; border-radius: 5px; background-color: deepskyblue; cursor: pointer;" onclick="start()"> CLICK ME</button>
+<br>
+<label>Hide path</label>
+<br>
+<input type="checkbox" onclick="preservePath = !preservePath">
+	</div>
+	<div>
+
+<h3>GENETIC ALGO EXAMPLE</h3>
+<canvas id="genCanvas" height=750 width=750 style="border:1px solid #000000;"></canvas>
+<br>
+<button style="height: 50px; width: 100px; border-radius: 5px; background-color: greenyellow; cursor: pointer;" onclick="start()"> CLICK ME</button>
+<br>
+<label>Hide path</label>
+<br>
+<input type="checkbox" onclick="preservePath = !preservePath">
+</div>
+</div>
 </body>
 </html>
