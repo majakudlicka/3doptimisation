@@ -1,5 +1,6 @@
-let preservePath = true;
+
 async function start() {
+	let preservePath = true;
 	const c = document.getElementById("annealingCanvas");
 	const ctx = c.getContext("2d");
 
@@ -52,6 +53,7 @@ async function start() {
 
 		var bestState = lastState;
 		var bestEnergy = lastEnergy;
+		let i = 0;
 
 		while (currentTemp > tempMin) {
 
@@ -75,8 +77,12 @@ async function start() {
 				}
 			}
 
-			if (lastEnergy < bestEnergy) {
+			i++;
+			if (i%20 === 0) {
 				await sleep();
+			}
+
+			if (lastEnergy < bestEnergy) {
 				bestState = lastState;
 				bestEnergy = lastEnergy;
 			}
@@ -121,7 +127,7 @@ async function start() {
 //
 	const result = await annealing({
 		initialState: initialState,
-		tempMax: 10,
+		tempMax: 15,
 		tempMin: 0.001,
 		newState: newState,
 		getTemp: getTemp,
