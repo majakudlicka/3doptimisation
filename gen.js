@@ -72,3 +72,10 @@ async function startGen() {
 	console.log('best score ', 750 * 750 - emptySurface);
 
 }
+
+// Next steps:
+// Collision checking
+// Diversity factor
+// Adding another axis
+// Diverse shapes
+// Polishing initial population, all functions etc

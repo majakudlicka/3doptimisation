@@ -44,7 +44,7 @@ async function start() {
 								 getTemp,
 								 getEnergy,
 							 } = {}) {
-		console.log('annealing6 begins');
+		console.log('annealing begins');
 		var currentTemp = tempMax;
 
 		var lastState = initialState;
@@ -59,8 +59,6 @@ async function start() {
 			function sleep(time) {
 				return new Promise((resolve) => setTimeout(resolve, time))
 			}
-
-
 
 			currentState = newState(lastState);
 			let currentEnergy = getEnergy(currentState);
@@ -89,7 +87,7 @@ async function start() {
 
 		}
 		return bestState;
-	};
+	}
 
 
 	function getEnergy(arr) {
@@ -117,13 +115,11 @@ async function start() {
 		}]
 	}
 
-//
-// // linear temperature decreasing
+ // linear temperature decreasing
 	function getTemp(prevTemperature) {
 		return prevTemperature - 0.001;
 	}
 
-//
 	const result = await annealing({
 		initialState: initialState,
 		tempMax: 15,
@@ -132,7 +128,7 @@ async function start() {
 		getTemp: getTemp,
 		getEnergy: getEnergy,
 	});
-//
+
 	console.log('result ', result);
 	console.log('energy ', getEnergy(result));
 
