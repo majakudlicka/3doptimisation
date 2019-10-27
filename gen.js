@@ -1,29 +1,17 @@
-// const geneticAlgorithmConstructor = require('./genAlgoConstructor');
-
 async function startGen() {
-	let preserveGenPath = true;
-
+	console.log('Genetic algorithm starts');
 	const c = document.getElementById("genCanvas");
 	const ctx = c.getContext("2d");
 
 	function fitnessF(arr) {
-
-		// j++;
-		// if (j%23 === 0) {
-		// 	// console.log('in iffy');
-		// 	await sleep();
-		// 	drawSquares(arr);
-		// }
 		let mostLeft = Math.min(arr[0].x, arr[1].x, arr[2].x);
 		let mostRight = Math.max(arr[0].x, arr[1].x, arr[2].x);
 		let mostTop = Math.max(arr[0].y, arr[1].y, arr[2].y);
 		let mostBottom = Math.min(arr[0].y, arr[1].y, arr[2].y);
 
 		const height = mostTop - mostBottom + 10;
-		const widht = mostRight - mostLeft + 10;
-		const res = 750 * 750 - height * widht;
-		// console.log({height, widht})
-		return res
+		const width = mostRight - mostLeft + 10;
+		return 750 * 750 - height * width;
 	}
 
 	function mutationF(previousState) {
@@ -70,19 +58,13 @@ async function startGen() {
 		crossoverFunction: crossoverF,
 		fitnessFunction: fitnessF,
 		population: [initialState],
-		// populationSize: 100
+		populationSize: 10
 	};
 
-	console.log('Genetic algorithm starts');
+	const geneticAlgorithm = geneticAlgorithmConstructor(config);
 
-	// var GeneticAlgorithmConstructor = require('./genAlgoConstructor');
-
-	var geneticAlgorithm = geneticAlgorithmConstructor(config);
-
-
-	console.log("Starting with:");
-	console.log(initialState)
-	for (var i = 0; i < 10; i++) await geneticAlgorithm.evolve(null, i, ctx);
+	console.log("Starting with: ", initialState);
+	for (var i = 0; i < 10000; i++) await geneticAlgorithm.evolve(null, i, ctx);
 	var best = geneticAlgorithm.best();
 	delete best.score;
 	console.log("Finished with: ", best);

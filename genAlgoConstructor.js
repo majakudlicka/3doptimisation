@@ -1,6 +1,5 @@
-
-
-
+let preserveGenPath = true;
+// Modified version of on https://www.npmjs.com/package/geneticalgorithm
 function geneticAlgorithmConstructor(options) {
 
 	function settingDefaults() { return {
@@ -13,19 +12,19 @@ function geneticAlgorithmConstructor(options) {
 	}}
 
 	function settingWithDefaults( settings , defaults ) {
-		settings = settings || {}
+		settings = settings || {};
 
-		settings.mutationFunction = settings.mutationFunction || defaults.mutationFunction
-		settings.crossoverFunction = settings.crossoverFunction || defaults.crossoverFunction
-		settings.fitnessFunction = settings.fitnessFunction || defaults.fitnessFunction
+		settings.mutationFunction = settings.mutationFunction || defaults.mutationFunction;
+		settings.crossoverFunction = settings.crossoverFunction || defaults.crossoverFunction;
+		settings.fitnessFunction = settings.fitnessFunction || defaults.fitnessFunction;
 
-		settings.doesABeatBFunction = settings.doesABeatBFunction || defaults.doesABeatBFunction
+		settings.doesABeatBFunction = settings.doesABeatBFunction || defaults.doesABeatBFunction;
 
-		settings.population = settings.population || defaults.population
-		if ( settings.population.length <= 0 ) throw Error("population must be an array and contain at least 1 phenotypes")
+		settings.population = settings.population || defaults.population;
+		if ( settings.population.length <= 0 ) throw Error("population must be an array and contain at least 1 phenotypes");
 
-		settings.populationSize = settings.populationSize || defaults.populationSize
-		if ( settings.populationSize <= 0 ) throw Error("populationSize must be greater than 0")
+		settings.populationSize = settings.populationSize || defaults.populationSize;
+		if ( settings.populationSize <= 0 ) throw Error("populationSize must be greater than 0");
 
 		return settings
 	}
@@ -39,7 +38,7 @@ function geneticAlgorithmConstructor(options) {
 
 
 	function populate () {
-		var size = settings.population.length
+		var size = settings.population.length;
 		while( settings.population.length < settings.populationSize ) {
 			settings.population.push(
 				mutate(
@@ -58,9 +57,9 @@ function geneticAlgorithmConstructor(options) {
 	}
 
 	function crossover(phenotype) {
-		phenotype = cloneJSON(phenotype)
-		var mate = settings.population[ Math.floor(Math.random() * settings.population.length ) ]
-		mate = cloneJSON(mate)
+		phenotype = cloneJSON(phenotype);
+		var mate = settings.population[ Math.floor(Math.random() * settings.population.length ) ];
+		mate = cloneJSON(mate);
 		return settings.crossoverFunction(phenotype,mate)[0]
 	}
 
@@ -74,13 +73,13 @@ function geneticAlgorithmConstructor(options) {
 	}
 
 	function compete( ) {
-		var nextGeneration = []
+		const nextGeneration = [];
 
-		for( var p = 0 ; p < settings.population.length - 1 ; p+=2 ) {
+		for( let p = 0 ; p < settings.population.length - 1 ; p+=2 ) {
 			var phenotype = settings.population[p];
 			var competitor = settings.population[p+1];
 
-			nextGeneration.push(phenotype)
+			nextGeneration.push(phenotype);
 			if ( doesABeatB( phenotype , competitor )) {
 				if ( Math.random() < 0.5 ) {
 					nextGeneration.push(mutate(phenotype))
@@ -108,7 +107,7 @@ function geneticAlgorithmConstructor(options) {
 	}
 
 	function drawSquares(currentState, ctx) {
-		// if (!preserveGenPath) ctx.clearRect(0, 0, 750, 750);
+		if (!preserveGenPath) ctx.clearRect(0, 0, 750, 750);
 		ctx.beginPath();
 		ctx.strokeStyle = "red";
 
@@ -140,20 +139,22 @@ function geneticAlgorithmConstructor(options) {
 				settings = settingWithDefaults(options,settings)
 			}
 
-			if (n%23 === 0) {
-				// console.log('in iffy');
+			// This is an arbitrary param that I picked to slow down animation and limit canvas redraws
+			const animationSpeedParam = 23;
+			if (n%animationSpeedParam === 0) {
 				await sleep();
-				// can we draw all population ? Maybe use range or something
-				drawSquares(settings.population[0], ctx);
+				for (let i = 0; i < settings.population.length; i++) {
+					drawSquares(settings.population[i], ctx);
+				}
 			}
 
-			populate()
-			randomizePopulationOrder()
-			compete()
+			populate();
+			randomizePopulationOrder();
+			compete();
 			return this
 		},
 		best : function() {
-			var scored = this.scoredPopulation()
+			var scored = this.scoredPopulation();
 			var result = scored.reduce(function(a,b){
 				return a.score >= b.score ? a : b
 			},scored[0]).phenotype

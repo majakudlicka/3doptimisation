@@ -1,6 +1,5 @@
-
+let preservePath = true;
 async function start() {
-	let preservePath = true;
 	const c = document.getElementById("annealingCanvas");
 	const ctx = c.getContext("2d");
 
