@@ -1,10 +1,10 @@
-
+// const geneticAlgorithmConstructor = require('./genAlgoConstructor');
 
 async function startGen() {
 	let preserveGenPath = true;
 
-	const c = document.getElementById("genCanvas");
-	const ctx = c.getContext("2d");
+	// const c = document.getElementById("genCanvas");
+	// const ctx = c.getContext("2d");
 
 	function sleep(time) {
 		return new Promise((resolve) => setTimeout(resolve, time))
@@ -37,7 +37,7 @@ async function startGen() {
 	}
 
 	let j = 0;
-	async function fitnessF(arr) {
+	function fitnessF(arr) {
 
 		// j++;
 		// if (j%23 === 0) {
@@ -103,43 +103,10 @@ async function startGen() {
 	for (var i = 0; i < 10000; i++) geneticAlgorithm.evolve();
 	var best = geneticAlgorithm.best();
 	delete best.score;
-	console.log("Finished with:");
-	console.log(best);
-	console.log('best score ', 750 * 750 - fitnessF(best));
+	console.log("Finished with: ", best);
+	const emptySurface = fitnessF(best);
+	console.log('best score ', 750 * 750 - emptySurface);
 
-	let preservePath = true;
-
-	async function start() {
-		const c = document.getElementById("genCanvas");
-		const ctx = c.getContext("2d");
-
-		let currentState;
-
-		function drawSquares() {
-			if (!preservePath) ctx.clearRect(0, 0, 750, 750);
-			ctx.beginPath();
-			ctx.strokeStyle = "red";
-
-			ctx.rect(currentState[0].x, currentState[0].y, 10, 10);
-			ctx.fillStyle = "red";
-			ctx.fill();
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.strokeStyle = "blue";
-
-			ctx.rect(currentState[1].x, currentState[1].y, 10, 10);
-			ctx.fillStyle = "blue";
-			ctx.fill();
-
-			ctx.stroke();
-			ctx.beginPath();
-			ctx.strokeStyle = "green";
-
-			ctx.rect(currentState[2].x, currentState[2].y, 10, 10);
-			ctx.fillStyle = "green";
-			ctx.fill();
-			ctx.stroke();
-		}
-
-	}
 }
+
+startGen();
