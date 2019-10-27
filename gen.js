@@ -3,40 +3,9 @@
 async function startGen() {
 	let preserveGenPath = true;
 
-	// const c = document.getElementById("genCanvas");
-	// const ctx = c.getContext("2d");
+	const c = document.getElementById("genCanvas");
+	const ctx = c.getContext("2d");
 
-	function sleep(time) {
-		return new Promise((resolve) => setTimeout(resolve, time))
-	}
-
-	function drawSquares(currentState) {
-		if (!preserveGenPath) ctx.clearRect(0, 0, 750, 750);
-		ctx.beginPath();
-		ctx.strokeStyle = "red";
-
-		ctx.rect(currentState[0].x, currentState[0].y, 10, 10);
-		ctx.fillStyle = "red";
-		ctx.fill();
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.strokeStyle = "blue";
-
-		ctx.rect(currentState[1].x, currentState[1].y, 10, 10);
-		ctx.fillStyle = "blue";
-		ctx.fill();
-
-		ctx.stroke();
-		ctx.beginPath();
-		ctx.strokeStyle = "green";
-
-		ctx.rect(currentState[2].x, currentState[2].y, 10, 10);
-		ctx.fillStyle = "green";
-		ctx.fill();
-		ctx.stroke();
-	}
-
-	let j = 0;
 	function fitnessF(arr) {
 
 		// j++;
@@ -100,7 +69,7 @@ async function startGen() {
 
 	console.log("Starting with:");
 	console.log(initialState)
-	for (var i = 0; i < 10000; i++) geneticAlgorithm.evolve();
+	for (var i = 0; i < 10000; i++) await geneticAlgorithm.evolve(null, i, ctx);
 	var best = geneticAlgorithm.best();
 	delete best.score;
 	console.log("Finished with: ", best);
@@ -108,5 +77,3 @@ async function startGen() {
 	console.log('best score ', 750 * 750 - emptySurface);
 
 }
-
-startGen();

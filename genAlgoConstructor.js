@@ -4,15 +4,10 @@
 function geneticAlgorithmConstructor(options) {
 
 	function settingDefaults() { return {
-
 		mutationFunction : function(phenotype) { return phenotype },
-
 		crossoverFunction : function(a,b) { return [a,b] },
-
 		fitnessFunction : function(phenotype) { return 0 },
-
 		doesABeatBFunction : undefined,
-
 		population : [],
 		populationSize : 100,
 	}}
@@ -35,7 +30,13 @@ function geneticAlgorithmConstructor(options) {
 		return settings
 	}
 
-	var settings = settingWithDefaults(options,settingDefaults())
+	var settings = settingWithDefaults(options,settingDefaults());
+
+	function sleep(time) {
+		return new Promise((resolve) => setTimeout(resolve, time))
+	}
+
+
 
 	function populate () {
 		var size = settings.population.length
@@ -106,11 +107,43 @@ function geneticAlgorithmConstructor(options) {
 		}
 	}
 
+	function drawSquares(currentState, ctx) {
+		// if (!preserveGenPath) ctx.clearRect(0, 0, 750, 750);
+		ctx.beginPath();
+		ctx.strokeStyle = "red";
+
+		ctx.rect(currentState[0].x, currentState[0].y, 10, 10);
+		ctx.fillStyle = "red";
+		ctx.fill();
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.strokeStyle = "blue";
+
+		ctx.rect(currentState[1].x, currentState[1].y, 10, 10);
+		ctx.fillStyle = "blue";
+		ctx.fill();
+
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.strokeStyle = "green";
+
+		ctx.rect(currentState[2].x, currentState[2].y, 10, 10);
+		ctx.fillStyle = "green";
+		ctx.fill();
+		ctx.stroke();
+	}
+
 	return {
-		evolve : function (options) {
+		evolve : async function (options, n, ctx) {
 
 			if ( options ) {
 				settings = settingWithDefaults(options,settings)
+			}
+
+			if (n%23 === 0) {
+				// console.log('in iffy');
+				await sleep();
+				drawSquares(settings.population[0], ctx);
 			}
 
 			populate()
