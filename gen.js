@@ -39,13 +39,27 @@ async function startGen() {
 		}]
 	}
 
-// function crossoverF() {
-//
-// }
+	function crossoverF(phenotypeA, phenotypeB) {
+		let index = Math.floor(Math.random() * 3);
+		let phenotypeX;
+		let phenotypeY;
 
-	function competitionF() {
-
+		if (index === 0) {
+			phenotypeX = [phenotypeB[0], phenotypeA[1], phenotypeA[2]];
+			phenotypeY = [phenotypeA[0], phenotypeB[1], phenotypeB[2]];
+		} else if (index === 1) {
+			phenotypeX = [phenotypeA[0], phenotypeB[1], phenotypeA[2]];
+			phenotypeY = [phenotypeB[0], phenotypeA[1], phenotypeB[2]];
+		} else {
+			phenotypeX = [phenotypeA[0], phenotypeA[1], phenotypeB[2]];
+			phenotypeY = [phenotypeB[0], phenotypeB[1], phenotypeA[2]];
+		}
+		return [ phenotypeX , phenotypeY ];
 	}
+
+	// Useful / necessary in situations where local minimas / maximas exist
+	// Used to introduce diversity
+	function competitionF() {}
 
 	const initialState = [{x: Math.floor(Math.random() * 750), y: Math.floor(Math.random() * 750)},
 		{x: Math.floor(Math.random() * 750), y: Math.floor(Math.random() * 750)},
@@ -53,9 +67,8 @@ async function startGen() {
 
 	var config = {
 		mutationFunction: mutationF,
-		// crossoverFunction: crossoverF,
+		crossoverFunction: crossoverF,
 		fitnessFunction: fitnessF,
-		// doesABeatBFunction: competitionF,
 		population: [initialState],
 		// populationSize: 100
 	};
@@ -69,7 +82,7 @@ async function startGen() {
 
 	console.log("Starting with:");
 	console.log(initialState)
-	for (var i = 0; i < 10000; i++) await geneticAlgorithm.evolve(null, i, ctx);
+	for (var i = 0; i < 10; i++) await geneticAlgorithm.evolve(null, i, ctx);
 	var best = geneticAlgorithm.best();
 	delete best.score;
 	console.log("Finished with: ", best);

@@ -143,6 +143,7 @@ function geneticAlgorithmConstructor(options) {
 			if (n%23 === 0) {
 				// console.log('in iffy');
 				await sleep();
+				// can we draw all population ? Maybe use range or something
 				drawSquares(settings.population[0], ctx);
 			}
 
