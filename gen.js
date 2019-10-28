@@ -49,23 +49,38 @@ async function startGen() {
 	// Used to introduce diversity
 	function competitionF() {}
 
-	const initialState = [{x: Math.floor(Math.random() * 750), y: Math.floor(Math.random() * 750)},
-		{x: Math.floor(Math.random() * 750), y: Math.floor(Math.random() * 750)},
-		{x: Math.floor(Math.random() * 750), y: Math.floor(Math.random() * 750)}];
+	function choseRandomPixel(max) {
+		return Math.floor(Math.random() * max);
+	}
 
-	var config = {
+	function initPhenotype() {
+		return [
+			{x: choseRandomPixel(750), y: choseRandomPixel(750)},
+			{x: choseRandomPixel(750), y: choseRandomPixel(750)},
+			{x: choseRandomPixel(750), y: choseRandomPixel(750)}
+			];
+	}
+
+	const populationSize = 100;
+	const initialState = [];
+
+	for (let i = 0; i < populationSize; i++) {
+		initialState.push(initPhenotype());
+	}
+
+	const config = {
 		mutationFunction: mutationF,
 		crossoverFunction: crossoverF,
 		fitnessFunction: fitnessF,
-		population: [initialState],
-		populationSize: 10
+		population: initialState,
+		populationSize: populationSize
 	};
 
 	const geneticAlgorithm = geneticAlgorithmConstructor(config);
 
 	console.log("Starting with: ", initialState);
-	for (var i = 0; i < 10000; i++) await geneticAlgorithm.evolve(null, i, ctx);
-	var best = geneticAlgorithm.best();
+	for (let i = 0; i < 10000; i++) await geneticAlgorithm.evolve(null, i, ctx);
+	const best = geneticAlgorithm.best();
 	delete best.score;
 	console.log("Finished with: ", best);
 	const emptySurface = fitnessF(best);
@@ -74,7 +89,7 @@ async function startGen() {
 }
 
 // Next steps:
-// Collision checking
+// Collision testing
 // Diversity factor
 // Adding another axis
 // Diverse shapes

@@ -1,30 +1,32 @@
-Commerial solutions:
-https://www.3dbinpacking.com/en/products/single-bin-packing
-http://www.3dbinbox.com/App/Views/index.html (free)
-https://www.stackassist.com/your-benefits/ (3d packing for rectangular objects)
-
 Npm packages
 https://www.npmjs.com/package/3d-bin-packing
 https://www.npmjs.com/package/binpackingjs (demo for 2D: https://codesandbox.io/s/XVJnv7Yg)
 https://www.npmjs.com/package/simulated-annealing
 
-Paper on packing objects with cavities and holes: https://pdfs.semanticscholar.org/7eb7/56da1acaf725c7a2d21c58383de3710bc553.pdf
+3D printer packing solution in Go (irregularly shaped objects:
+https://github.com/fogleman/pack3d (described in article: https://hackaday.com/2017/06/28/the-3d-printer-packing-problem/#comments)
 
-Solution in Go: https://github.com/fogleman/pack3d (described in article: https://hackaday.com/2017/06/28/the-3d-printer-packing-problem/#comments)
-
-Commercial solution:
-https://www.autodesk.co.uk/products/netfabb/features/netfabb 
-
-Open-source solution for irregular 2D packing: 
-https://svgnest.com/
-
-3D rectangular bin packing in Java: 
+3D rectangular bin packing in Java:
 https://github.com/skjolber/3d-bin-container-packing
+
+Good overview paper on 2D/3D Knapsack problem:
+https://scholar.uwindsor.ca/cgi/viewcontent.cgi?article=5986&context=etd
+
+Paper on packing objects with cavities and holes:
+https://pdfs.semanticscholar.org/7eb7/56da1acaf725c7a2d21c58383de3710bc553.pdf
 
 Papers that suggests partitioning product for better results:
 http://www.miaojunyao.com/project/packing/packing.pdf
 http://hpcg.purdue.edu/papers/Vanek14CGF.pdf (packMerger)
-https://scholar.uwindsor.ca/cgi/viewcontent.cgi?article=5986&context=etd 
+
+Open-source solution for irregular 2D packing:
+https://svgnest.com/
+
+Commercial solutions:
+https://www.3dbinpacking.com/en/products/single-bin-packing
+http://www.3dbinbox.com/App/Views/index.html (free)
+https://www.stackassist.com/your-benefits/ (3d packing for rectangular objects)
+https://www.autodesk.co.uk/products/netfabb/features/netfabb
 
 
 
