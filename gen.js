@@ -87,17 +87,3 @@ async function startGen() {
 	console.log('best score ', 750 * 750 - emptySurface);
 
 }
-
-// Next steps:
-// Collision testing
-// Diversity factor
-// Adding another axis
-// Diverse shapes
-// Polishing initial population, all functions etc
-
-//Problem overview, knapsack & NP completeness
-// Table from paper showing mainly used algos
-// Intro do SA & GA algos, how they work
-// GO Algo
-// Simulations. Simulation strong points & caveats (as above)
-// Mention of different approaches mentioned in papers (cutting 3d models), open source solution & commercial solutions

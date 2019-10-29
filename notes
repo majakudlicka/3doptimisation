@@ -19,12 +19,12 @@ Papers that suggests partitioning product for better results:
 http://www.miaojunyao.com/project/packing/packing.pdf
 http://hpcg.purdue.edu/papers/Vanek14CGF.pdf (packMerger)
 
-Open-source solution for irregular 2D packing:
+Open-source / free solutions for irregular 2D packing:
 https://svgnest.com/
+http://www.3dbinbox.com/App/Views/index.html
 
 Commercial solutions:
 https://www.3dbinpacking.com/en/products/single-bin-packing
-http://www.3dbinbox.com/App/Views/index.html (free)
 https://www.stackassist.com/your-benefits/ (3d packing for rectangular objects)
 https://www.autodesk.co.uk/products/netfabb/features/netfabb
 
